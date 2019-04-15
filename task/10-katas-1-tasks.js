@@ -17,30 +17,8 @@
  *  ]
  */
 function createCompassPoints() {
+    throw new Error('Not implemented');
     var sides = ['N','E','S','W'];  // use array of cardinal directions only!
-    let resArr = [];
-    let dir = "";
-    let degrees = 0;
-    var sides = ['N', 'E', 'S', 'W'];  // use array of cardinal directions only!
-    for (let i = 0; i < sides.length; i++) {
-        let btwcardinal = (i == 0 || i == 2) ? (sides[i] + sides[i + 1])
-            : (sides[i == 3 ? 0 : i + 1] + sides[i]);
-        for (let count = 0; count < 8; count++) {
-            switch (count) {
-                case 0: dir = sides[i]; break;
-                case 1: dir = sides[i] + 'b' + sides[i == 3 ? 0 : i + 1]; break;
-                case 2: dir = sides[i] + btwcardinal; break;
-                case 3: dir = btwcardinal + "b" + sides[i]; break;
-                case 4: dir = btwcardinal; break;
-                case 5: dir = btwcardinal + "b" + sides[i == 3 ? 0 : i + 1]; break;
-                case 6: dir = sides[i == 3 ? 0 : i + 1] + btwcardinal; break;
-                case 7: dir = sides[i == 3 ? 0 : i + 1] + "b" + sides[i]; break;
-            }
-            resArr.push({ abbreviation: dir, azimuth: degrees });
-            degrees += 11.25;
-        }
-    }
-    return resArr;
 }
 
 
@@ -78,22 +56,7 @@ function createCompassPoints() {
  *   'nothing to do' => 'nothing to do'
  */
 function* expandBraces(str) {
-    let toExpand = [str];
-    let appeared = new Array();
-    let matched, replacementArr;
-    while (toExpand.length > 0) {
-        str = toExpand.pop();
-        matched = str.match(/{([^{}]*)}/);
-        if (matched != null) {
-            replacementArr = matched[1].split(',');
-            for (let replacement of replacementArr) {
-                toExpand.push(str.replace(matched[0], replacement));
-            }
-        } else if (!appeared.includes(str)) {
-            appeared.push(str);
-            yield str;
-        }
-    }
+    throw new Error('Not implemented');
 }
 
 
@@ -125,36 +88,7 @@ function* expandBraces(str) {
  *
  */
 function getZigZagMatrix(n) {
-    let result = new Array(n);
-    for (let i = 0; i < n; i++) {
-        result[i] = new Array(n);
-    }
-
-    let valuesCnt = Math.pow(n, 2);
-    let i = 0, j = 0;
-    for (let value = 0; value < valuesCnt; value++) {
-        result[i][j] = value;
-        if ((i + j) % 2 == 0) {
-            if (j + 1 < n) {
-                j++;
-            } else {
-                i += 2;
-            }
-            if (i > 0) {
-                i--;
-            }
-        } else {
-            if (i + 1 < n) {
-                i++;
-            } else {
-                j += 2;
-            }
-            if (j > 0) {
-                j--;
-            }
-        }
-    }
-    return result;
+    throw new Error('Not implemented');
 }
 
 
@@ -179,24 +113,7 @@ function getZigZagMatrix(n) {
  *
  */
 function canDominoesMakeRow(dominoes) {
-    const result = Array(1);
-    result[0] = dominoes.shift();
-
-    let lastLength = 0;
-    while (lastLength != dominoes.length && dominoes.length > 0) {
-        lastLength = dominoes.length;
-        for (let i = 0; i < dominoes.length; i++) {
-            if (result[result.length - 1][1] == dominoes[i][0] && result[result.length - 1][0] != dominoes[i][1]) {
-                result[result.length] = dominoes[i];
-                dominoes.splice(i, 1);
-            } else if (result[result.length - 1][1] == dominoes[i][1] && result[result.length - 1][0] != dominoes[i][1]) {
-                result[result.length] = dominoes[i].reverse();
-                dominoes.splice(i, 1);
-            }
-        }
-    };
-
-    return dominoes.length == 0;
+    throw new Error('Not implemented');
 }
 
 
@@ -220,42 +137,7 @@ function canDominoesMakeRow(dominoes) {
  * [ 1, 2, 4, 5]          => '1,2,4,5'
  */
 function extractRanges(nums) {
-    let counter = 0;
-    let str = '';
-    str += nums[0];
-    let prev = nums[0];
-    for(let i = 1; i < nums.length; i++){
-        if(nums[i] - prev == 1){
-            counter++;
-            prev = nums[i];
-        }
-        else{
-            if(counter == 1){
-                str += ',' + prev;
-                prev = nums[i];
-                counter = 0;
-            }
-            if(counter > 1){
-                str += '-' + prev;
-                prev = nums[i];
-                str += ',' + prev;
-            }
-            if(counter == 0){
-                prev = nums[i];
-                str += ',' + prev;
-            }
-            counter = 0;
-        }
-        if((i == nums.length - 1) && (counter != 0)){
-            if (counter > 1)
-                str += '-' + prev;
-            else
-                str += ',' + prev;
-            counter = 0;
-        }
-
-    }
-    return str;
+    throw new Error('Not implemented');
 }
 
 module.exports = {
